@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sunshine</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!--ITEM LAYOUT -->
+    <string name="temp_max">21º</string>
+    <string name="temp_min">8º</string>
+
+</resources>
