@@ -39,6 +39,9 @@ import java.util.List;
  */
 public class ForecastFragment extends Fragment {
 
+    String[] forecastArray = {};
+    ArrayAdapter<String> mForecastAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +89,7 @@ public class ForecastFragment extends Fragment {
 
         List<String> weekForecast = new ArrayList<>(Arrays.asList(forecastArray));
 
-        ArrayAdapter<String> mForecastAdapter = new ArrayAdapter<String>(
+        mForecastAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 R.layout.list_item_forecast,
                 R.id.list_item_forecast_textview,
@@ -186,7 +189,7 @@ public class ForecastFragment extends Fragment {
             }
 
             try{
-                weather = getWeatherDataFromJson(forecastJsonStr, 7);
+                return getWeatherDataFromJson(forecastJsonStr, 7);
 
             }catch (Exception e){
                 Log.e(LOG_CAT, "Error parsing JSON", e);
@@ -274,11 +277,19 @@ public class ForecastFragment extends Fragment {
                 resultStrs[i] = day + " - " + description + " - " + highAndLow;
             }
 
-            for (String s : resultStrs) {
-                Log.v("JSON", "Forecast entry: " + s);
-            }
             return resultStrs;
 
+        }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+
+            if(strings != null){
+                mForecastAdapter.clear();
+                for(String dayForecast : strings){
+                    mForecastAdapter.add(dayForecast);
+                }
+            }
         }
     }
 }
