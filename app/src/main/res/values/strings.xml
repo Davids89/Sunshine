@@ -9,4 +9,7 @@
     <string name="temp_max">21º</string>
     <string name="temp_min">8º</string>
 
+    <!--Forecast Menu -->
+    <string name="refresh">Refresh</string>
+
 </resources>
