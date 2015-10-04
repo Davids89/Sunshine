@@ -67,17 +67,25 @@ public class ForecastFragment extends Fragment {
 
         int id = item.getItemId(); //get the item id
         if(id == R.id.action_refresh){
-            FetchWeatherTask weather = new FetchWeatherTask();
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            String location = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
-            weather.execute(location);
+            updateWeather();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public ForecastFragment() {
+    public void updateWeather(){
+        FetchWeatherTask weather = new FetchWeatherTask();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+        //if the value is not changed (pref_location_key) we get the default value (pref_location_default)
+        String location = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+        weather.execute(location);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateWeather();
     }
 
     @Override
@@ -85,16 +93,6 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-        String[] forecastArray = {
-                "Today - Sunny - 88/63",
-                "Tomorrow - Foggy - 70/40",
-                "Weds - Cloudy - 72/65",
-                "Thursday - Asteroids - 75/65",
-                "Fri - Heavy Rain - 65/56",
-                "Sat - HELP TRAPPED IN WEATHERSTATION - 60/51",
-                "Sun - Sunny - 80/68"
-        };
 
         List<String> weekForecast = new ArrayList<>(Arrays.asList(forecastArray));
 
