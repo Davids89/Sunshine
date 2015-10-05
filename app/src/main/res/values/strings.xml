@@ -9,6 +9,9 @@
     <string name="temp_max">21º</string>
     <string name="temp_min">8º</string>
 
+    <!--MAIN MENU-->
+    <string name="map_location_title">View locations</string>
+
     <!--Forecast Menu -->
     <string name="refresh">Refresh</string>
     <string name="title_activity_detail">DetailActivity</string>
