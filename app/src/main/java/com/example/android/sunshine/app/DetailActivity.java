@@ -32,7 +32,7 @@ import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 
 public class DetailActivity extends ActionBarActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
